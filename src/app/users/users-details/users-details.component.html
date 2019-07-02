@@ -1,0 +1,18 @@
+<mat-tab-group dynamicHeight>
+    <mat-tab label="Account Details">
+        <mat-card class="example-large-box mat-elevation-z4">
+            <mat-card-title>{{ passedData.firstName }} {{ passedData.lastName }}</mat-card-title>
+            <mat-card-subtitle>{{ passedData.email }}</mat-card-subtitle>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Permissions">
+        <mat-card class="example-large-box mat-elevation-z4">
+            <app-user-permissions></app-user-permissions>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Third">
+        <mat-card class="example-large-box mat-elevation-z4">
+            Content 3 
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>
