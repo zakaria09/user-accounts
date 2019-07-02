@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user.model';
+import { Permission } from '../interfaces/permission.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,6 +15,27 @@ export class UsersService {
       setTimeout(() => observer.next(this.users), 200)
     })
   }
+
+  getUserPermissions(): Observable<any> {
+    return new Observable(observer => {
+      setTimeout(() => observer.next(this.permissions), 200)
+    })
+  }
+
+  permissions: Permission[] = [
+    {userId: 1, schemeId: 1, dateCreated: new Date()},
+    {userId: 2, schemeId: 2, dateCreated: new Date()},
+    {userId: 3, schemeId: 3, dateCreated: new Date()},
+    {userId: 4, schemeId: 4, dateCreated: new Date()},
+    {userId: 5, schemeId: 5, dateCreated: new Date()},
+    {userId: 6, schemeId: 6, dateCreated: new Date()},
+    {userId: 7, schemeId: 7, dateCreated: new Date()},
+    {userId: 8, schemeId: 8, dateCreated: new Date()},
+    {userId: 9, schemeId: 9, dateCreated: new Date()},
+    {userId: 10, schemeId: 10, dateCreated: new Date()},
+    {userId: 11, schemeId: 11, dateCreated: new Date()},
+    {userId: 12, schemeId: 12, dateCreated: new Date()},
+  ]
 
   users: User[] = [
     {id: 1, firstName: 'lark', lastName: 'Kent', email: 'clark@test.com'},

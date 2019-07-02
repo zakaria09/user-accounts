@@ -1,1 +1,3 @@
-<p>user-permissions works!</p>
+<mat-card *ngFor="let permission of permissions">
+    <mat-card-title>{{ permission | json }}</mat-card-title>
+</mat-card>

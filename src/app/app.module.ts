@@ -11,13 +11,17 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { UsersDetailsComponent } from './users/users-details/users-details.component';
 import { UserPermissionsComponent } from './users/users-details/user-permissions/user-permissions.component';
+import { ToolbarComponent } from './nav/toolbar/toolbar.component';
+import { SidenavComponent } from './nav/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     UsersDetailsComponent,
-    UserPermissionsComponent
+    UserPermissionsComponent,
+    ToolbarComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

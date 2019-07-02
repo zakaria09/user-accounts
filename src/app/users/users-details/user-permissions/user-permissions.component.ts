@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-permissions',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPermissionsComponent implements OnInit {
 
-  constructor() { }
+  permissions: Observable<any[]>;
+
+  constructor(private userService: UsersService) { }
 
   ngOnInit() {
+    this.userService.getUserPermissions()
+      .subscribe(permission => this.permissions = permission)
   }
 
 }

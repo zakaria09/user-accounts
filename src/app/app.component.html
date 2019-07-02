@@ -1,3 +1,11 @@
-<app-users></app-users>
-
-<router-outlet></router-outlet>
+<app-toolbar (sidenavToggle)="sidenav.toggle()"></app-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav-content>
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+    </mat-sidenav-content>
+    <mat-sidenav #sidenav role="navigation">
+        <app-sidenav (closeSidenav)="sidenav.close()"></app-sidenav>
+    </mat-sidenav>
+</mat-sidenav-container>

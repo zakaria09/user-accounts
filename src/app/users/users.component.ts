@@ -26,7 +26,6 @@ export class UsersComponent implements OnInit {
   }
 
   openProfile(account) {
-    console.log(account)
     this.modal.open(UsersDetailsComponent, {
       width: '180em',
       height: '50%',
