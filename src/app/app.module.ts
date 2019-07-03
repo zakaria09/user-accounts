@@ -13,6 +13,7 @@ import { UsersDetailsComponent } from './users/users-details/users-details.compo
 import { UserPermissionsComponent } from './users/users-details/user-permissions/user-permissions.component';
 import { ToolbarComponent } from './nav/toolbar/toolbar.component';
 import { SidenavComponent } from './nav/sidenav/sidenav.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SidenavComponent } from './nav/sidenav/sidenav.component';
     UsersDetailsComponent,
     UserPermissionsComponent,
     ToolbarComponent,
-    SidenavComponent
+    SidenavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
