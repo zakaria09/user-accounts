@@ -11,11 +11,13 @@ export class PermissionsSchemeService {
 
   getAllSchemes(): Observable<any> {
     return new Observable(observer => {
-      setTimeout(() => observer.next(this.permissionScheme), 200)
+      setTimeout(() => {
+        observer.next(this.permissionSchemes);
+      }, 200);
     })
   }
 
-  permissionScheme: permissionScheme[] = [
+  permissionSchemes: permissionScheme[] = [
     {id: 1, name: 'Young People\'s Course', description: 'A course for young people.'},
     {id: 2, name: 'Farming Communities', description: 'A course for farming communities.'},
     {id: 3, name: 'Helicopter Rescue', description: 'A course for Helicopter Rescue.'},

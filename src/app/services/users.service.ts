@@ -12,32 +12,34 @@ export class UsersService {
 
   getAllUsers(): Observable<any> {
     return new Observable(observer => {
-      setTimeout(() => observer.next(this.users), 200)
+      observer.next(this.users)
     })
   }
 
   getUserPermissions(): Observable<any> {
     return new Observable(observer => {
-      setTimeout(() => observer.next(this.permissions), 200)
+      setTimeout(() => {
+        observer.next(this.permissions);
+      }, 600);
     })
   }
 
   permissions: Permission[] = [
     {userId: 1, schemeId: 1, dateCreated: new Date(), linked: 'person 1'},
-    {userId: 1, schemeId: 13, dateCreated: new Date(), linked: 'person 92'},
+    {userId: 1, schemeId: 2, dateCreated: new Date(), linked: 'person 92'},
     {userId: 2, schemeId: 2, dateCreated: new Date(), linked: 'person 2'},
-    {userId: 2, schemeId: 14, dateCreated: new Date(), linked: 'person 48'},
-    {userId: 2, schemeId: 17, dateCreated: new Date(), linked: 'person 27'},
+    {userId: 2, schemeId: 3, dateCreated: new Date(), linked: 'person 48'},
+    {userId: 2, schemeId: 4, dateCreated: new Date(), linked: 'person 27'},
     {userId: 3, schemeId: 3, dateCreated: new Date(), linked: 'person 3'},
     {userId: 4, schemeId: 4, dateCreated: new Date(), linked: 'person 4'},
     {userId: 5, schemeId: 5, dateCreated: new Date(), linked: 'person 5'},
-    {userId: 6, schemeId: 6, dateCreated: new Date(), linked: 'person 6'},
-    {userId: 7, schemeId: 7, dateCreated: new Date(), linked: 'person 7'},
-    {userId: 8, schemeId: 8, dateCreated: new Date(), linked: 'person 8'},
-    {userId: 9, schemeId: 9, dateCreated: new Date(), linked: 'person 9'},
-    {userId: 10, schemeId: 10, dateCreated: new Date(), linked: 'person 10'},
-    {userId: 11, schemeId: 11, dateCreated: new Date(), linked: 'person 11'},
-    {userId: 12, schemeId: 12, dateCreated: new Date(), linked: 'person 12'},
+    {userId: 6, schemeId: 1, dateCreated: new Date(), linked: 'person 6'},
+    {userId: 7, schemeId: 2, dateCreated: new Date(), linked: 'person 7'},
+    {userId: 8, schemeId: 2, dateCreated: new Date(), linked: 'person 8'},
+    {userId: 9, schemeId: 5, dateCreated: new Date(), linked: 'person 9'},
+    {userId: 10, schemeId: 2, dateCreated: new Date(), linked: 'person 10'},
+    {userId: 11, schemeId: 4, dateCreated: new Date(), linked: 'person 11'},
+    {userId: 12, schemeId: 4, dateCreated: new Date(), linked: 'person 12'},
   ]
 
   users: User[] = [

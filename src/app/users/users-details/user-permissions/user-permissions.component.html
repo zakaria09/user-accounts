@@ -1,6 +1,10 @@
-<mat-card *ngFor="let permission of permissions">
-    <mat-card-title>Scheme ID: {{ permission.schemeId }}</mat-card-title>
-    <mat-card-title>Date Created: {{ permission.dateCreated | date: 'medium' }}</mat-card-title>
-    <mat-card-title>Linked: {{ permission.linked }}</mat-card-title>
+<mat-card *ngFor="let scheme of schemeData">
+    <!-- <mat-card-title>{{ scheme | json }}</mat-card-title> -->
+    <mat-card-title>Scheme ID: {{ scheme.id }}</mat-card-title>
+    <mat-card-title>Course Name: {{ scheme.name }}</mat-card-title>
+    <mat-card-title>Course Description: {{ scheme.description }}</mat-card-title>
+    <mat-card-title>Course Description: {{ scheme.dateLinked }}</mat-card-title>
+    <mat-card-title>Date Created: {{ scheme.expiryDate | date: 'medium' }}</mat-card-title>
+    <mat-card-title>Linked: {{ scheme.linked }}</mat-card-title>
     <mat-divider></mat-divider>
 </mat-card>

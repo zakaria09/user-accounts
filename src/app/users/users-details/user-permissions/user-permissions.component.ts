@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, Inject } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { PermissionsSchemeService } from 'src/app/services/permissions-scheme.service';
 
@@ -11,30 +11,50 @@ import { PermissionsSchemeService } from 'src/app/services/permissions-scheme.se
 })
 export class UserPermissionsComponent implements OnInit {
 
-  permissions;
+  // permissions: Array<any>;
+  // schemes = [];
+  // permissionSchemes: Array<any>;
+  schemeData = [];
+
+  _schemes = [];
+  _links = [];
 
   constructor(
     private userService: UsersService,
     private permissionservice: PermissionsSchemeService,
     @Inject(MAT_DIALOG_DATA) public passedData: any
-    ) { }
+    ) {
+
+      const schemes$ = this.permissionservice.getAllSchemes();
+      const links$ = this.userService.getUserPermissions();
+
+      combineLatest(schemes$, links$).subscribe(([schemes, links]) => {
+
+        const schemeData = [];
+        const relevantLinks = links.filter(l => l.userId === this.passedData.id);
+        
+        relevantLinks.forEach(link => {
+          const scheme = schemes.find(s => s.id === link.schemeId);
+          if (scheme) {
+            const entry = {
+              id: scheme.id,
+              name: scheme.name,
+              description: scheme.description,
+              dateLinked: link.dateCreated,
+              linked: link.linked,
+            }
+            console.log('entry Obj',entry)
+            schemeData.push(entry)
+          } else {
+            console.log('couldnt find scheme ID ', link.schemeId);
+          }
+        })
+
+        this.schemeData = schemeData;
+      });
+
+    }
 
   ngOnInit() {
-    this.findUserPermission(this.passedData.id);
-    this.findSchemeId(2);
-    console.log(this)
-  }
-
-  findUserPermission(id) {
-    this.userService.getUserPermissions()
-      .subscribe(permission => this.permissions = permission.filter(p => p.userId === id))
-  }
-
-  findSchemeId(id) {
-    this.permissionservice.getAllSchemes()
-      .subscribe(scheme => console.log(scheme.filter(p => p.id === id)))
-      console.log(this.permissions)
-      // find the object with the id relating to the schemeId 
-      // add the properties to the to the object with the schemeId
   }
 }
