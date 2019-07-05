@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, Inject } from '@angular/core';
+import { Component, OnInit, Input, Output, Inject, AfterViewInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { Observable, combineLatest } from 'rxjs';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
 import { PermissionsSchemeService } from 'src/app/services/permissions-scheme.service';
 
 @Component({
@@ -9,15 +9,16 @@ import { PermissionsSchemeService } from 'src/app/services/permissions-scheme.se
   templateUrl: './user-permissions.component.html',
   styleUrls: ['./user-permissions.component.sass']
 })
-export class UserPermissionsComponent implements OnInit {
+export class UserPermissionsComponent implements OnInit, AfterViewInit {
 
-  // permissions: Array<any>;
-  // schemes = [];
-  // permissionSchemes: Array<any>;
   schemeData = [];
 
-  _schemes = [];
-  _links = [];
+  tableData: MatTableDataSource<any>;
+
+  schemes$ = this.permissionservice.getAllSchemes();
+  links$ = this.userService.getUserPermissions();
+
+  displayedColumns = ['id', 'name', 'description', 'dateLinked', 'linked'];
 
   constructor(
     private userService: UsersService,
@@ -25,36 +26,31 @@ export class UserPermissionsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public passedData: any
     ) {
 
-      const schemes$ = this.permissionservice.getAllSchemes();
-      const links$ = this.userService.getUserPermissions();
-
-      combineLatest(schemes$, links$).subscribe(([schemes, links]) => {
-
-        const schemeData = [];
-        const relevantLinks = links.filter(l => l.userId === this.passedData.id);
-        
-        relevantLinks.forEach(link => {
-          const scheme = schemes.find(s => s.id === link.schemeId);
-          if (scheme) {
-            const entry = {
-              id: scheme.id,
-              name: scheme.name,
-              description: scheme.description,
-              dateLinked: link.dateCreated,
-              linked: link.linked,
-            }
-            console.log('entry Obj',entry)
-            schemeData.push(entry)
-          } else {
-            console.log('couldnt find scheme ID ', link.schemeId);
-          }
-        })
-
-        this.schemeData = schemeData;
-      });
-
     }
 
   ngOnInit() {
+    combineLatest(this.schemes$, this.links$).subscribe(([schemes, links]) => {
+      const relevantLinks = links.filter(l => l.userId === this.passedData.id);
+      
+      relevantLinks.forEach(link => {
+        const scheme = schemes.find(s => s.id === link.schemeId);
+        if (scheme) {
+          const entry = {
+            id: scheme.id,
+            name: scheme.name,
+            description: scheme.description,
+            dateLinked: link.dateCreated,
+            linked: link.linked,
+          }
+          console.log('entry Obj',entry)
+          this.schemeData.push(entry)
+          this.tableData = new MatTableDataSource(this.schemeData);
+        } else {
+          console.log('couldnt find scheme ID ', link.schemeId);
+        }
+      })
+    });
   }
+
+  ngAfterViewInit() {}
 }
