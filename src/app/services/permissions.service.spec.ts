@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PermissionsSchemeService } from './permissions-scheme.service';
+import { PermissionsSchemeService } from './permissions.service';
 
 describe('PermissionsSchemeService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

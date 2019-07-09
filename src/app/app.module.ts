@@ -14,6 +14,7 @@ import { UserPermissionsComponent } from './users/users-details/user-permissions
 import { ToolbarComponent } from './nav/toolbar/toolbar.component';
 import { SidenavComponent } from './nav/sidenav/sidenav.component';
 import { HomeComponent } from './home/home.component';
+import { RulesComponent } from './rules/rules.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomeComponent } from './home/home.component';
     UserPermissionsComponent,
     ToolbarComponent,
     SidenavComponent,
-    HomeComponent
+    HomeComponent,
+    RulesComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,10 @@ import { HomeComponent } from './home/home.component';
     Ng2SearchPipeModule,
     FormsModule
   ],
-  entryComponents: [UsersDetailsComponent],
+  entryComponents: [
+    UsersDetailsComponent,
+    RulesComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

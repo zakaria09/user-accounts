@@ -1,15 +1,16 @@
 import { Component, OnInit, Input, Output, Inject, AfterViewInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { Observable, combineLatest } from 'rxjs';
-import { MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
-import { PermissionsSchemeService } from 'src/app/services/permissions-scheme.service';
+import { MAT_DIALOG_DATA, MatTableDataSource, MatDialogRef } from '@angular/material';
+import { PermissionsSchemeService } from 'src/app/services/permissions.service';
+import { UsersDetailsComponent } from '../users-details.component';
 
 @Component({
   selector: 'app-user-permissions',
   templateUrl: './user-permissions.component.html',
   styleUrls: ['./user-permissions.component.sass']
 })
-export class UserPermissionsComponent implements OnInit, AfterViewInit {
+export class UserPermissionsComponent implements OnInit {
 
   schemeData = [];
 
@@ -18,12 +19,13 @@ export class UserPermissionsComponent implements OnInit, AfterViewInit {
   schemes$ = this.permissionservice.getAllSchemes();
   links$ = this.userService.getUserPermissions();
 
-  displayedColumns = ['id', 'name', 'description', 'dateLinked', 'linked'];
+  displayedColumns = ['id', 'name', 'description', 'dateLinked', 'linked', 'rules'];
 
   constructor(
     private userService: UsersService,
     private permissionservice: PermissionsSchemeService,
-    @Inject(MAT_DIALOG_DATA) public passedData: any
+    @Inject(MAT_DIALOG_DATA) public passedData: any,
+    private modalRef: MatDialogRef<UsersDetailsComponent>
     ) {
 
     }
@@ -42,15 +44,18 @@ export class UserPermissionsComponent implements OnInit, AfterViewInit {
             dateLinked: link.dateCreated,
             linked: link.linked,
           }
-          console.log('entry Obj',entry)
+          //console.log('entry Obj',entry)
           this.schemeData.push(entry)
           this.tableData = new MatTableDataSource(this.schemeData);
         } else {
-          console.log('couldnt find scheme ID ', link.schemeId);
+          //console.log('couldnt find scheme ID ', link.schemeId);
         }
       })
     });
   }
 
-  ngAfterViewInit() {}
+  openRules(schemeId) {
+    //this.modalRef.close()
+    this.permissionservice.openRulesModal(schemeId);
+  }
 }
