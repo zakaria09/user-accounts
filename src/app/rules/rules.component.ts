@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject, Injector, AfterViewInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { PermissionsSchemeService } from '../services/permissions.service';
-import { UsersDetailsComponent } from '../users/users-details/users-details.component';
 
 @Component({
   selector: 'app-rules',
@@ -11,33 +10,35 @@ import { UsersDetailsComponent } from '../users/users-details/users-details.comp
 export class RulesComponent implements OnInit, AfterViewInit {
 
   error = false;
+  loading = true;
+
+  rules: Array<any>;
 
   permissionService: PermissionsSchemeService;
 
   constructor(
-    private modalRef: MatDialogRef<UsersDetailsComponent>,
-    private injector: Injector
-    //private permissionService: PermissionsSchemeService
+    private injector: Injector,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.permissionService = this.injector.get(PermissionsSchemeService);
-    console.log(this.permissionService)
   }
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-    this.modalRef.close();
     this.permissionService.getAllRules()
       .subscribe(
-        result => {
-          console.log(result)
+        (rules: Array<any>) => {
+          this.loading = false;
+          this.rules = rules.filter(r => r.schemeId === this.data.schemeId);
         },
         error => {
           this.error = true;
           console.log(error)
         }
       )
+  }
+
+  ngAfterViewInit() {
+
   }
 
 }

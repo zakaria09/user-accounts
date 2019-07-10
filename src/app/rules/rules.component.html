@@ -1,2 +1,27 @@
-<p>rules works!</p>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading">
+    <mat-list role="list" *ngFor="let rule of rules">
+        <h1>Users Rules</h1>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">Scheme ID: {{ rule.schemeId }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">Resources: {{ rule.resources }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">Type: {{ rule.type }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">User Priviledges:</mat-list-item>
+        <div 
+            *ngFor="let priviledge of rule.priviledges">
+            <mat-chip-list 
+            class="chips" 
+            role="listitem">
+                <mat-chip 
+                    color="accent" 
+                    selected>
+                        {{ priviledge | titlecase }}
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+    </mat-list>
+</div>
 <div *ngIf="error">Sorry there was an error!</div>

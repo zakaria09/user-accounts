@@ -24,13 +24,13 @@ export class PermissionsSchemeService {
     return new Observable(rule => {
       setTimeout(() => {
         rule.next(this.Rules)
-      }, )
+      }, 500)
     })
   }
 
   openRulesModal(id) {
     this.modal.open(RulesComponent, {
-      data: { schemeId: id }
+      data: { schemeId: id.id }
     })
   }
 

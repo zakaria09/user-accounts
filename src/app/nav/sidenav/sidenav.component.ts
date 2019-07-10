@@ -21,9 +21,6 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   }
   
   ngAfterViewInit() {
-    // textContent
-    console.log(this.iconRef._elementRef.nativeElement.textContent)
-    console.log(this.labelRef.nativeElement.textContent)
   }
 
   onClose() {
@@ -33,7 +30,6 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   toggleTheme() {
     this.changeTheme = !this.changeTheme
     this.themeService.toggleTheme(this.changeTheme)
-    console.log(this.changeTheme)
     if (this.changeTheme === true) {
       this.iconRef._elementRef.nativeElement.textContent = 'wb_sunny'
       this.labelRef.nativeElement.textContent = 'Light Mode'

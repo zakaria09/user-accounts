@@ -55,7 +55,7 @@ export class UserPermissionsComponent implements OnInit {
   }
 
   openRules(schemeId) {
-    //this.modalRef.close()
+    console.log(schemeId)
     this.permissionservice.openRulesModal(schemeId);
   }
 }

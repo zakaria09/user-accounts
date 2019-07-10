@@ -11,7 +11,9 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatChipsModule
  } from '@angular/material';
 
 @NgModule({
@@ -26,7 +28,9 @@ import {
         MatTabsModule,
         MatToolbarModule,
         MatSidenavModule,
-        MatTableModule
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatChipsModule
     ],
     exports: [
         MatDividerModule,
@@ -39,7 +43,9 @@ import {
         MatTabsModule,
         MatToolbarModule,
         MatSidenavModule,
-        MatTableModule
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatChipsModule
     ]
 })
 
