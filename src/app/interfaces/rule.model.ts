@@ -1,6 +1,6 @@
 export interface Rule {
     schemeId: number,
     resources: string,
-    priviledges: Array<string>,
+    priviledges: string,
     type: string
 }

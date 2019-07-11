@@ -13,7 +13,8 @@ import {
     MatSidenavModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
  } from '@angular/material';
 
 @NgModule({
@@ -30,7 +31,8 @@ import {
         MatSidenavModule,
         MatTableModule,
         MatProgressSpinnerModule,
-        MatChipsModule
+        MatChipsModule,
+        MatSelectModule
     ],
     exports: [
         MatDividerModule,
@@ -45,7 +47,8 @@ import {
         MatSidenavModule,
         MatTableModule,
         MatProgressSpinnerModule,
-        MatChipsModule
+        MatChipsModule,
+        MatSelectModule
     ]
 })
 
