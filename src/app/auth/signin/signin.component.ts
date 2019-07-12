@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 @Component({
   selector: 'app-signin',
@@ -22,6 +23,10 @@ export class SigninComponent implements OnInit {
       }),
       password: new FormControl('', {validators: [Validators.required]})
     });
+  }
+
+  openModal() {
+    this.modal.open(ForgotPasswordComponent)
   }
 
   onSubmit() {

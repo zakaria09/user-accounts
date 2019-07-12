@@ -11,6 +11,10 @@
         <mat-icon>account_circle</mat-icon>
         <span mat-menu-item>Accounts</span>
     </a>
+    <a mat-list-item class="list" routerLink="/reset" (click)="onClose()">
+        <mat-icon>fingerprint</mat-icon>
+        <span mat-menu-item>Reset Password</span>
+    </a>
     <a mat-list-item class="list" (click)="toggleTheme()" >
         <mat-icon #icon>brightness_4</mat-icon>
         <span mat-menu-item #label>Dark Mode</span>
