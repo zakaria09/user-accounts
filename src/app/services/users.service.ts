@@ -25,16 +25,22 @@ export class UsersService {
   }
 
   changeUserPassword(user, password): Observable<any> {
-    let success: Boolean = true;
-    return new Observable(observable => {        
+    let passwordChanged: Boolean = true;
+    return new Observable(observable => {
+      // simulate making the API call
       setTimeout(() => {
-        observable.next(
-          {
-            fullName: `${user.firstName} ${user.lastName}`,
-            isSuccess: success,
-            isLoading: false
-          }
-          )
+        if (passwordChanged) {
+          observable.next(
+            {
+              fullName: `${user.firstName} ${user.lastName}`,
+              isSuccess: true,
+              isLoading: false
+            }
+          );
+          observable.complete();
+        } else {
+          observable.error('Something went wrong! The password wasnt changed.');
+        };
       }, 1000)
     })
   }

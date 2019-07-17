@@ -15,6 +15,7 @@ export class ChangePasswordComponent implements OnInit {
   loading = false;
   success: Boolean;
   name: string;
+  error: boolean = false;
 
   constructor(
     private userService: UsersService,
@@ -31,16 +32,15 @@ export class ChangePasswordComponent implements OnInit {
     this.loading = true;
     this.userService.changeUserPassword(this.passedData, form.value)
       .subscribe(result => {
-        if(result.isSuccess === true) {
           this.loading = result.isLoading;
           this.success = result.isSuccess;
           this.name = result.fullName;
-          console.log('success', result)
-        } else if (result.isSuccess === false) {
-          this.loading = result.isLoading;
-          this.success = result.isSuccess;
-          this.name = result.fullName;
-        }
+      }, 
+      error => {
+        this.error = true;
+        this.loading = false;
+        this.success = false;
+        console.log(error);
       });
     this.changePasswordForm.reset();
   }
