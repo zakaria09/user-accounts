@@ -24,16 +24,22 @@ export class ResetPasswordComponent implements OnInit {
         validators: [Validators.required]
       }),
       confirmPassword: new FormControl('', {
-        validators: [Validators.required]
+        validators: [Validators.required],
       }),
-    }, {
-      validator: PasswordValidators.passwordsShouldMatch
-    });
+    }, {validator: PasswordValidators.passwordsShouldMatch});
     this.verificationFormGroup = this._formBuilder.group({
       verificationCtrl: new FormControl('', {
         validators: [Validators.required]
       })
     });
+
+    console.log(this.password)
+    console.log(this.confirmPassword)
+    
+  }
+
+  onSubmit(form) {
+    console.log(form);
   }
 
 }

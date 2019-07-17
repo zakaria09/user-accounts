@@ -6,7 +6,7 @@ export class PasswordValidators {
         let confirmPassword = control.get('confirmPassword');
 
         if (newPassword.value !== confirmPassword.value) 
-            return { passwordsShouldMatch: true };
+            confirmPassword.setErrors({ passwordsShouldMatch: true });
         else
             return null;
     }
