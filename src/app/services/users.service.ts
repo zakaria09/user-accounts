@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user.model';
 import { Permission } from '../interfaces/permission.model';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,21 @@ export class UsersService {
       setTimeout(() => {
         observer.next(this.permissions);
       }, 600);
+    })
+  }
+
+  changeUserPassword(user, password): Observable<any> {
+    let success: Boolean = true;
+    return new Observable(observable => {        
+      setTimeout(() => {
+        observable.next(
+          {
+            fullName: `${user.firstName} ${user.lastName}`,
+            isSuccess: success,
+            isLoading: false
+          }
+          )
+      }, 1000)
     })
   }
 
